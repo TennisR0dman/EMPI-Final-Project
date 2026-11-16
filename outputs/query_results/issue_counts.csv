@@ -1,0 +1,16 @@
+﻿issue_type,field_name,severity,issue_count
+missing_ssn,ssn,warning,3797
+missing_phone,phone,warning,1796
+shared_ssn,ssn,warning,1292
+shared_phone_and_dob,phone,warning,1204
+gender_unknown,gender,warning,774
+exact_name_and_dob,demographic,warning,586
+invalid_phone,phone,error,562
+missing_address,address,warning,546
+invalid_postal_code,postal_code,error,400
+invalid_ssn,ssn,error,350
+invalid_birth_date,birth_date,error,225
+unrecognized_gender,gender,warning,146
+missing_family_name,family_name,error,68
+missing_given_name,given_name,error,58
+missing_mrn,mrn,error,47

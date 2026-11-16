@@ -1,0 +1,10 @@
+﻿field_key,field_name,field_sort,field_group,in_core_score,description
+given_name,Given Name,1,core,1,Given name is present after standardization.
+family_name,Family Name,2,core,1,Family name is present after standardization.
+birth_date,Birth Date,3,core,1,Birth date parsed to an ISO date.
+known_gender,Known Gender,4,core,1,"Administrative gender is male, female, or other. Unknown does not count."
+street,Street,5,core,1,Street line is present after standardization.
+postal_code,Postal Code,6,core,1,Postal code normalized to 5 digits.
+phone,Phone,7,contact,0,Phone normalized to 10 digits. Not part of the headline completeness score.
+ssn,Ssn,8,identifier,0,SSN passed the structural check. Not part of the headline completeness score.
+mrn,Mrn,9,identifier,0,An MR identifier was loaded. Not part of the headline completeness score.

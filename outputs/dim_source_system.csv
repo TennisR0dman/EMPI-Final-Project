@@ -1,0 +1,4 @@
+﻿source_system_key,system_name,system_uri,description
+billing,Billing,http://lakeside.example.org/identifier/mrn-billing,Fictional billing-account demographic extract.
+lab,Laboratory,http://lakeside.example.org/identifier/mrn-lab,Fictional laboratory patient-demographic extract.
+registration,Registration,http://lakeside.example.org/identifier/mrn-registration,Fictional hospital registration demographic extract.

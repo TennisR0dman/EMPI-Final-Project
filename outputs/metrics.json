@@ -1,0 +1,320 @@
+{
+  "total_records": 21310,
+  "injected_duplicate_records": 810,
+  "injected_duplicate_rate": 0.038010323791647115,
+  "true_pairs": 810,
+  "true_pairs_blocked": 805,
+  "true_pairs_unblocked": 5,
+  "candidate_pairs": 20038,
+  "blocks_used": 118591,
+  "blocks_skipped": 0,
+  "max_block_size": 10,
+  "auto_link": {
+    "tp": 749,
+    "fp": 35,
+    "fn": 61,
+    "predicted": 784,
+    "precision": 0.9553571428571429,
+    "recall": 0.9246913580246914,
+    "f1": 0.9397741530740277
+  },
+  "flagged": {
+    "tp": 805,
+    "fp": 47,
+    "fn": 5,
+    "predicted": 852,
+    "precision": 0.9448356807511737,
+    "recall": 0.9938271604938271,
+    "f1": 0.9687123947051746
+  },
+  "auto_link_pairs": 784,
+  "review_pairs": 68,
+  "by_variant": [
+    {
+      "variant": "address_format",
+      "true_pairs": 72,
+      "auto_link_tp": 71,
+      "flagged_tp": 71,
+      "auto_link_recall": 0.9861111111111112,
+      "flagged_recall": 0.9861111111111112
+    },
+    {
+      "variant": "combined",
+      "true_pairs": 34,
+      "auto_link_tp": 34,
+      "flagged_tp": 34,
+      "auto_link_recall": 1.0,
+      "flagged_recall": 1.0
+    },
+    {
+      "variant": "maiden_name",
+      "true_pairs": 63,
+      "auto_link_tp": 61,
+      "flagged_tp": 63,
+      "auto_link_recall": 0.9682539682539683,
+      "flagged_recall": 1.0
+    },
+    {
+      "variant": "missing_phone",
+      "true_pairs": 69,
+      "auto_link_tp": 68,
+      "flagged_tp": 69,
+      "auto_link_recall": 0.9855072463768116,
+      "flagged_recall": 1.0
+    },
+    {
+      "variant": "missing_ssn",
+      "true_pairs": 70,
+      "auto_link_tp": 69,
+      "flagged_tp": 69,
+      "auto_link_recall": 0.9857142857142858,
+      "flagged_recall": 0.9857142857142858
+    },
+    {
+      "variant": "name_dob_only",
+      "true_pairs": 48,
+      "auto_link_tp": 0,
+      "flagged_tp": 48,
+      "auto_link_recall": 0.0,
+      "flagged_recall": 1.0
+    },
+    {
+      "variant": "nickname",
+      "true_pairs": 90,
+      "auto_link_tp": 89,
+      "flagged_tp": 90,
+      "auto_link_recall": 0.9888888888888889,
+      "flagged_recall": 1.0
+    },
+    {
+      "variant": "phone_format",
+      "true_pairs": 36,
+      "auto_link_tp": 36,
+      "flagged_tp": 36,
+      "auto_link_recall": 1.0,
+      "flagged_recall": 1.0
+    },
+    {
+      "variant": "swapped_names",
+      "true_pairs": 63,
+      "auto_link_tp": 62,
+      "flagged_tp": 62,
+      "auto_link_recall": 0.9841269841269841,
+      "flagged_recall": 0.9841269841269841
+    },
+    {
+      "variant": "transposed_dob",
+      "true_pairs": 95,
+      "auto_link_tp": 91,
+      "flagged_tp": 94,
+      "auto_link_recall": 0.9578947368421052,
+      "flagged_recall": 0.9894736842105263
+    },
+    {
+      "variant": "typo_family",
+      "true_pairs": 100,
+      "auto_link_tp": 98,
+      "flagged_tp": 99,
+      "auto_link_recall": 0.98,
+      "flagged_recall": 0.99
+    },
+    {
+      "variant": "typo_given",
+      "true_pairs": 70,
+      "auto_link_tp": 70,
+      "flagged_tp": 70,
+      "auto_link_recall": 1.0,
+      "flagged_recall": 1.0
+    }
+  ],
+  "issue_count": 11851,
+  "links_written": 1568,
+  "charts_retired": 784,
+  "seed": 42,
+  "person_count": 20500,
+  "duplicate_count": 810,
+  "faker_version": "33.1.0",
+  "elapsed_seconds": 8.958,
+  "scenarios": [
+    {
+      "total_records": 8170,
+      "injected_duplicate_records": 170,
+      "injected_duplicate_rate": 0.0208078335373317,
+      "true_pairs": 170,
+      "true_pairs_blocked": 170,
+      "true_pairs_unblocked": 0,
+      "candidate_pairs": 11457,
+      "blocks_used": 0,
+      "blocks_skipped": 0,
+      "max_block_size": 0,
+      "auto_link": {
+        "tp": 160,
+        "fp": 0,
+        "fn": 10,
+        "predicted": 160,
+        "precision": 1.0,
+        "recall": 0.9411764705882353,
+        "f1": 0.9696969696969697
+      },
+      "flagged": {
+        "tp": 170,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 170,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "auto_link_pairs": 160,
+      "review_pairs": 10,
+      "scenario_key": "baseline",
+      "seed": 42,
+      "person_count": 8000,
+      "duplicate_count": 170
+    },
+    {
+      "total_records": 4400,
+      "injected_duplicate_records": 400,
+      "injected_duplicate_rate": 0.09090909090909091,
+      "true_pairs": 400,
+      "true_pairs_blocked": 400,
+      "true_pairs_unblocked": 0,
+      "candidate_pairs": 3524,
+      "blocks_used": 0,
+      "blocks_skipped": 0,
+      "max_block_size": 0,
+      "auto_link": {
+        "tp": 376,
+        "fp": 0,
+        "fn": 24,
+        "predicted": 376,
+        "precision": 1.0,
+        "recall": 0.94,
+        "f1": 0.9690721649484536
+      },
+      "flagged": {
+        "tp": 400,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 400,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "auto_link_pairs": 376,
+      "review_pairs": 24,
+      "scenario_key": "merger",
+      "seed": 43,
+      "person_count": 4000,
+      "duplicate_count": 400
+    },
+    {
+      "total_records": 3080,
+      "injected_duplicate_records": 80,
+      "injected_duplicate_rate": 0.025974025974025976,
+      "true_pairs": 80,
+      "true_pairs_blocked": 80,
+      "true_pairs_unblocked": 0,
+      "candidate_pairs": 1499,
+      "blocks_used": 0,
+      "blocks_skipped": 0,
+      "max_block_size": 0,
+      "auto_link": {
+        "tp": 75,
+        "fp": 0,
+        "fn": 5,
+        "predicted": 75,
+        "precision": 1.0,
+        "recall": 0.9375,
+        "f1": 0.967741935483871
+      },
+      "flagged": {
+        "tp": 80,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 80,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "auto_link_pairs": 75,
+      "review_pairs": 5,
+      "scenario_key": "messy_entry",
+      "seed": 44,
+      "person_count": 3000,
+      "duplicate_count": 80
+    },
+    {
+      "total_records": 2570,
+      "injected_duplicate_records": 70,
+      "injected_duplicate_rate": 0.027237354085603113,
+      "true_pairs": 70,
+      "true_pairs_blocked": 70,
+      "true_pairs_unblocked": 0,
+      "candidate_pairs": 2018,
+      "blocks_used": 0,
+      "blocks_skipped": 0,
+      "max_block_size": 0,
+      "auto_link": {
+        "tp": 66,
+        "fp": 35,
+        "fn": 4,
+        "predicted": 101,
+        "precision": 0.6534653465346535,
+        "recall": 0.9428571428571428,
+        "f1": 0.7719298245614036
+      },
+      "flagged": {
+        "tp": 70,
+        "fp": 47,
+        "fn": 0,
+        "predicted": 117,
+        "precision": 0.5982905982905983,
+        "recall": 1.0,
+        "f1": 0.748663101604278
+      },
+      "auto_link_pairs": 101,
+      "review_pairs": 16,
+      "scenario_key": "hard_cases",
+      "seed": 45,
+      "person_count": 2500,
+      "duplicate_count": 70
+    },
+    {
+      "total_records": 3090,
+      "injected_duplicate_records": 90,
+      "injected_duplicate_rate": 0.02912621359223301,
+      "true_pairs": 90,
+      "true_pairs_blocked": 85,
+      "true_pairs_unblocked": 5,
+      "candidate_pairs": 1540,
+      "blocks_used": 0,
+      "blocks_skipped": 0,
+      "max_block_size": 0,
+      "auto_link": {
+        "tp": 72,
+        "fp": 0,
+        "fn": 18,
+        "predicted": 72,
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.888888888888889
+      },
+      "flagged": {
+        "tp": 85,
+        "fp": 0,
+        "fn": 5,
+        "predicted": 85,
+        "precision": 1.0,
+        "recall": 0.9444444444444444,
+        "f1": 0.9714285714285714
+      },
+      "auto_link_pairs": 72,
+      "review_pairs": 13,
+      "scenario_key": "lab_migration",
+      "seed": 46,
+      "person_count": 3000,
+      "duplicate_count": 90
+    }
+  ]
+}

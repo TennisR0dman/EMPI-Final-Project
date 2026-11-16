@@ -1,0 +1,5 @@
+﻿match_grade,grade_name,grade_sort,description
+certain,Certain,1,Score and corroboration are high enough to link without a reviewer.
+probable,Probable,2,Close match. A person reviews it before any chart is retired.
+possible,Possible,3,Weak match. A person should review it before it is used.
+certainly-not,Certainly not,4,Not a match. These pairs are omitted from the fact table.

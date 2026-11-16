@@ -1,0 +1,122 @@
+"""Given-name nickname map used only at comparison time.
+
+The raw name is preserved. "Bill" and "William" compare as the same given name.
+The map is a small English given-name list for this synthetic file, not a
+complete nickname dictionary.
+"""
+
+NICKNAME_TO_CANONICAL: dict[str, str] = {
+    "BILL": "WILLIAM",
+    "BILLY": "WILLIAM",
+    "WILL": "WILLIAM",
+    "WILLIE": "WILLIAM",
+    "BOB": "ROBERT",
+    "ROB": "ROBERT",
+    "BOBBY": "ROBERT",
+    "ROBBIE": "ROBERT",
+    "LIZ": "ELIZABETH",
+    "BETH": "ELIZABETH",
+    "LIZZY": "ELIZABETH",
+    "ELIZA": "ELIZABETH",
+    "JEN": "JENNIFER",
+    "JENNY": "JENNIFER",
+    "MIKE": "MICHAEL",
+    "MICK": "MICHAEL",
+    "JIM": "JAMES",
+    "JIMMY": "JAMES",
+    "JOE": "JOSEPH",
+    "JOEY": "JOSEPH",
+    "TOM": "THOMAS",
+    "TOMMY": "THOMAS",
+    "DAVE": "DAVID",
+    "DAN": "DANIEL",
+    "DANNY": "DANIEL",
+    "CHRIS": "CHRISTOPHER",
+    "MATT": "MATTHEW",
+    "ALEX": "ALEXANDER",
+    "KATE": "KATHERINE",
+    "KATIE": "KATHERINE",
+    "KATHY": "KATHERINE",
+    "NICK": "NICHOLAS",
+    "TONY": "ANTHONY",
+    "STEVE": "STEVEN",
+    "STEPHEN": "STEVEN",
+    "RICK": "RICHARD",
+    "DICK": "RICHARD",
+    "RICH": "RICHARD",
+    "PAT": "PATRICIA",
+    "PATTY": "PATRICIA",
+    "TRICIA": "PATRICIA",
+    "MAGGIE": "MARGARET",
+    "MEG": "MARGARET",
+    "PEGGY": "MARGARET",
+    "ANDY": "ANDREW",
+    "DREW": "ANDREW",
+    "BEN": "BENJAMIN",
+    "SAM": "SAMUEL",
+    "TED": "THEODORE",
+    "ED": "EDWARD",
+    "EDDIE": "EDWARD",
+    "RON": "RONALD",
+    "GREG": "GREGORY",
+    "JEFF": "JEFFREY",
+    "TIM": "TIMOTHY",
+    "CINDY": "CYNTHIA",
+    "BECKY": "REBECCA",
+    "BECCA": "REBECCA",
+    "SUE": "SUSAN",
+    "SUZY": "SUSAN",
+    "DEBBIE": "DEBORAH",
+    "DEB": "DEBORAH",
+    "JACK": "JOHN",
+    "JOHNNY": "JOHN",
+    "HARRY": "HENRY",
+}
+
+CANONICAL_TO_NICKNAMES: dict[str, list[str]] = {}
+for _nick, _canon in NICKNAME_TO_CANONICAL.items():
+    CANONICAL_TO_NICKNAMES.setdefault(_canon, []).append(_nick)
+
+FEMALE_CANONICAL = (
+    "ELIZABETH",
+    "JENNIFER",
+    "KATHERINE",
+    "PATRICIA",
+    "MARGARET",
+    "REBECCA",
+    "SUSAN",
+    "DEBORAH",
+    "CYNTHIA",
+)
+MALE_CANONICAL = (
+    "WILLIAM",
+    "ROBERT",
+    "MICHAEL",
+    "JAMES",
+    "JOSEPH",
+    "THOMAS",
+    "DAVID",
+    "DANIEL",
+    "CHRISTOPHER",
+    "MATTHEW",
+    "ANTHONY",
+    "STEVEN",
+    "RICHARD",
+    "ANDREW",
+    "BENJAMIN",
+    "SAMUEL",
+    "EDWARD",
+    "RONALD",
+    "GREGORY",
+    "JEFFREY",
+    "TIMOTHY",
+    "JOHN",
+    "HENRY",
+    "NICHOLAS",
+    "ALEXANDER",
+)
+
+
+def canonical_given(name: str) -> str:
+    token = name.upper().strip()
+    return NICKNAME_TO_CANONICAL.get(token, token)

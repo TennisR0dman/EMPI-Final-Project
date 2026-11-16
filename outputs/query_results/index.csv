@@ -1,0 +1,7 @@
+﻿name,kind,row_count,purpose
+records_per_source,report,15,Count charts by scenario and source system. This is the first reconciliation check when an extract lands.
+records_by_month,report,330,Chart volume by the month the source record was received. The Power BI trend uses the same grain.
+active_flag_counts,report,30,Active versus inactive charts after auto-link survivorship. Retired duplicates are active = 0.
+exact_match_groups,report,293,One row per exact normalized name-and-DOB group that contains more than one chart. Use this as the deterministic worklist beside the probabilistic scores.
+suspicious_ssn_name_conflict,report,209,"Same SSN, different normalized family name. Maiden-name duplicates and bad SSN keying both land here. A person still has to review them."
+issue_counts,report,15,Issue volume by type and severity. This is the same grain as the data-quality bar chart.

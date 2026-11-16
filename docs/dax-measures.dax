@@ -1,0 +1,227 @@
+// EMPI data-integrity measures for the Power BI model.
+// Paste these into the model after the relationships in docs/power-bi-build-guide.md exist.
+// Table and column names match the CSV headers. Keep those names so this file pastes as written.
+//
+// Two rates are easy to mix up in an interview:
+//   Suspected Duplicate Record Rate counts both charts in an auto-link.
+//   Estimated Extra Chart Rate counts auto-link pairs, which is closer to "extra charts / all charts".
+// The known injected rate lives on the disconnected eval_summary table and is not an operational KPI.
+
+// How many source charts are in the current filter?
+Record Count =
+COUNTROWS ( fact_patient )
+
+// Charts that participate in at least one certain auto-link.
+// in_auto_link is 1 or 0 on the patient fact, so SUM is a distinct chart count.
+Linked Chart Count =
+SUM ( fact_patient[in_auto_link] )
+
+// Operational duplicate rate a dashboard can compute without an answer key.
+// Both charts in a linked pair are in the numerator.
+Suspected Duplicate Record Rate =
+DIVIDE ( [Linked Chart Count], [Record Count] )
+
+// Charts that are in a review pair and are not already in an auto-link.
+Records Needing Review =
+SUM ( fact_patient[needs_review] )
+
+// Share of charts still waiting on a person.
+Review Record Rate =
+DIVIDE ( [Records Needing Review], [Record Count] )
+
+// Pair grain. One row is one scored candidate at or above the review threshold.
+Match Pair Count =
+COUNTROWS ( fact_match_pair )
+
+Auto Link Pair Count =
+CALCULATE (
+    [Match Pair Count],
+    fact_match_pair[decision] = "auto_link"
+)
+
+Pairs Needing Review =
+CALCULATE (
+    [Match Pair Count],
+    fact_match_pair[decision] = "manual_review"
+)
+
+// If pairs do not overlap, this estimates the extra-chart rate.
+// 160 auto-link pairs / 8,170 charts is about 1.96% on the seeded run.
+// It is lower than the suspected record rate because that rate counts both charts.
+Estimated Extra Chart Rate =
+DIVIDE ( [Auto Link Pair Count], [Record Count] )
+
+// Grade counts. Filtering the fact column keeps the measure working inside a grade visual.
+Certain Pair Count =
+CALCULATE (
+    [Match Pair Count],
+    fact_match_pair[match_grade] = "certain"
+)
+
+Probable Pair Count =
+CALCULATE (
+    [Match Pair Count],
+    fact_match_pair[match_grade] = "probable"
+)
+
+Possible Pair Count =
+CALCULATE (
+    [Match Pair Count],
+    fact_match_pair[match_grade] = "possible"
+)
+
+// Same certain-count pattern through the dimension, for CALCULATE practice.
+// The relationship fact_match_pair[match_grade] -> dim_match_grade[match_grade] has to be active.
+Certain Pair Count via Grade =
+CALCULATE (
+    [Match Pair Count],
+    dim_match_grade[match_grade] = "certain"
+)
+
+// Mean of the 6-field core score stored on each chart.
+// Core fields are given name, family name, birth date, known gender, street, and postal code.
+// Phone and SSN are reported separately because they are often absent for ordinary reasons.
+Data Completeness % =
+DIVIDE (
+    SUM ( fact_patient[completeness_score] ),
+    [Record Count]
+)
+
+Birth Date Completeness % =
+DIVIDE ( SUM ( fact_patient[has_birth_date] ), [Record Count] )
+
+Known Gender Completeness % =
+DIVIDE ( SUM ( fact_patient[has_known_gender] ), [Record Count] )
+
+Phone Completeness % =
+DIVIDE ( SUM ( fact_patient[has_phone] ), [Record Count] )
+
+SSN Completeness % =
+DIVIDE ( SUM ( fact_patient[has_ssn] ), [Record Count] )
+
+MRN Completeness % =
+DIVIDE ( SUM ( fact_patient[has_mrn] ), [Record Count] )
+
+// Field grain. Use this on a bar of dim_field[field_name].
+// A slicer on field group then changes the denominator, which is what you want.
+Field Completeness % =
+DIVIDE (
+    SUM ( fact_field_completeness[is_present] ),
+    COUNTROWS ( fact_field_completeness )
+)
+
+Issue Count =
+COUNTROWS ( fact_data_quality_issue )
+
+Error Issue Count =
+CALCULATE (
+    [Issue Count],
+    fact_data_quality_issue[severity] = "error"
+)
+
+Warning Issue Count =
+CALCULATE (
+    [Issue Count],
+    fact_data_quality_issue[severity] = "warning"
+)
+
+// Issues per 100 charts. Both facts must be filtered by the same source and date dimensions.
+// That is why each fact has its own relationship to dim_source_system and dim_date.
+Issues per 100 Records =
+DIVIDE ( [Issue Count], [Record Count] ) * 100
+
+// Time intelligence. dim_date must be marked as a date table on full_date.
+// The relationship can stay on date_key. The functions use the date column.
+Issue Count Prior Month =
+CALCULATE (
+    [Issue Count],
+    DATEADD ( dim_date[full_date], -1, MONTH )
+)
+
+Issue Count MoM % =
+VAR CurrentMonth = [Issue Count]
+VAR PriorMonth = [Issue Count Prior Month]
+RETURN
+    DIVIDE ( CurrentMonth - PriorMonth, PriorMonth )
+
+Suspected Duplicate Rate Prior Month =
+CALCULATE (
+    [Suspected Duplicate Record Rate],
+    DATEADD ( dim_date[full_date], -1, MONTH )
+)
+
+Issues MTD =
+TOTALMTD ( [Issue Count], dim_date[full_date] )
+
+// Role-playing patient dimension.
+// In a pair table, record 1 flows through the active relationship.
+// This measure reads the family name on the inactive record_id_2 relationship.
+Record 2 Family Name =
+CALCULATE (
+    SELECTEDVALUE ( dim_patient[family_name] ),
+    USERELATIONSHIP ( fact_match_pair[record_id_2], dim_patient[record_id] )
+)
+
+// Scenario cards. scenario_metrics has one row per scenario and is related only to dim_scenario.
+// SELECTEDVALUE is blank when the slicer has more than one scenario, so a card does not
+// silently show the best scenario. On the comparison page, put scenario on the rows and these
+// measures still resolve to the row's value. These numbers use the synthetic answer key.
+Auto Link Precision =
+SELECTEDVALUE ( scenario_metrics[auto_link_precision] )
+
+Auto Link Recall =
+SELECTEDVALUE ( scenario_metrics[auto_link_recall] )
+
+Auto Link F1 =
+SELECTEDVALUE ( scenario_metrics[auto_link_f1] )
+
+Flagged Precision =
+SELECTEDVALUE ( scenario_metrics[flagged_precision] )
+
+Flagged Recall =
+SELECTEDVALUE ( scenario_metrics[flagged_recall] )
+
+Flagged F1 =
+SELECTEDVALUE ( scenario_metrics[flagged_f1] )
+
+Known Injected Duplicate Rate =
+SELECTEDVALUE ( scenario_metrics[injected_duplicate_rate] )
+
+Review Pair Count =
+SELECTEDVALUE ( scenario_metrics[review_pairs] )
+
+Scenario Mean Completeness =
+SELECTEDVALUE ( scenario_metrics[mean_completeness] )
+
+// What-if parameter. Create it in Modeling > New parameter > Numeric range:
+//   Name: Auto Link Threshold
+//   Min 0.50, Max 0.99, Increment 0.01, Default 0.95
+// Power BI names the value measure "Auto Link Threshold Value".
+// The curve below is score-only. It does not apply the corroboration rule or the
+// SSN and gender vetoes. The cards above use the full decision policy.
+What-If Precision =
+VAR Cutoff =
+    SELECTEDVALUE ( 'Auto Link Threshold'[Auto Link Threshold Value], 0.95 )
+RETURN
+    CALCULATE (
+        MAX ( eval_threshold_metrics[precision] ),
+        ROUND ( eval_threshold_metrics[threshold], 2 ) = ROUND ( Cutoff, 2 )
+    )
+
+What-If Recall =
+VAR Cutoff =
+    SELECTEDVALUE ( 'Auto Link Threshold'[Auto Link Threshold Value], 0.95 )
+RETURN
+    CALCULATE (
+        MAX ( eval_threshold_metrics[recall] ),
+        ROUND ( eval_threshold_metrics[threshold], 2 ) = ROUND ( Cutoff, 2 )
+    )
+
+What-If F1 =
+VAR Cutoff =
+    SELECTEDVALUE ( 'Auto Link Threshold'[Auto Link Threshold Value], 0.95 )
+RETURN
+    CALCULATE (
+        MAX ( eval_threshold_metrics[f1] ),
+        ROUND ( eval_threshold_metrics[threshold], 2 ) = ROUND ( Cutoff, 2 )
+    )

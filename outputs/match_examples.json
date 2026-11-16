@@ -1,0 +1,503 @@
+{
+  "note": "Synthetic data. These objects follow the shape of a FHIR R4 Patient/$match request and searchset response. They were written by this project. They are not a live server response. MRN systems look like http://lakeside.example.org/identifier/mrn-registration. SSN identifiers use http://hl7.org/fhir/sid/us-ssn and the values are fabricated.",
+  "examples": [
+    {
+      "label": "Auto-link. Match grade certain.",
+      "decision": "auto_link",
+      "decision_reason": "corroborated_high_score",
+      "agreed_fields": "given:agree|family:agree|dob:agree|ssn:agree|phone:agree|street:agree|postal:agree|gender:agree|alignment:direct",
+      "request": {
+        "resourceType": "Parameters",
+        "parameter": [
+          {
+            "name": "resource",
+            "resource": {
+              "resourceType": "Patient",
+              "id": "pat-baseline__REG-000028",
+              "active": false,
+              "gender": "male",
+              "identifier": [
+                {
+                  "system": "http://lakeside.example.org/identifier/mrn-registration",
+                  "value": "baseline-R0000028",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "MR"
+                      }
+                    ]
+                  },
+                  "assigner": {
+                    "display": "Lakeside Health (fictional)"
+                  }
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/us-ssn",
+                  "value": "477904199",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "SS"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "use": "official",
+                  "family": "Anderson",
+                  "given": [
+                    "Daniel",
+                    "A"
+                  ]
+                }
+              ],
+              "telecom": [
+                {
+                  "system": "email",
+                  "value": "danielanderson38@example.com",
+                  "use": "home"
+                },
+                {
+                  "system": "phone",
+                  "value": "(985) 577-2749",
+                  "use": "home"
+                }
+              ],
+              "birthDate": "1959-04-05",
+              "address": [
+                {
+                  "use": "home",
+                  "line": [
+                    "1974 Sanchez Mountains LN"
+                  ],
+                  "city": "Detroit",
+                  "state": "MI",
+                  "postalCode": "48285"
+                }
+              ]
+            }
+          },
+          {
+            "name": "onlyCertainMatches",
+            "valueBoolean": false
+          },
+          {
+            "name": "count",
+            "valueInteger": 5
+          }
+        ]
+      },
+      "response": {
+        "resourceType": "Bundle",
+        "type": "searchset",
+        "total": 1,
+        "entry": [
+          {
+            "fullUrl": "http://lakeside.example.org/fhir/Patient/pat-baseline__BIL-000980",
+            "resource": {
+              "resourceType": "Patient",
+              "id": "pat-baseline__BIL-000980",
+              "active": true,
+              "gender": "male",
+              "identifier": [
+                {
+                  "system": "http://lakeside.example.org/identifier/mrn-billing",
+                  "value": "baseline-B0000980",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "MR"
+                      }
+                    ]
+                  },
+                  "assigner": {
+                    "display": "Lakeside Health (fictional)"
+                  }
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/us-ssn",
+                  "value": "477904199",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "SS"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "use": "official",
+                  "family": "Anderson",
+                  "given": [
+                    "Daniel",
+                    "A"
+                  ]
+                }
+              ],
+              "telecom": [
+                {
+                  "system": "email",
+                  "value": "danielanderson.dup0980@example.com",
+                  "use": "home"
+                },
+                {
+                  "system": "phone",
+                  "value": "985.577.2749",
+                  "use": "home"
+                }
+              ],
+              "birthDate": "1959-04-05",
+              "address": [
+                {
+                  "use": "home",
+                  "line": [
+                    "1974 Sanchez Mountains Lane"
+                  ],
+                  "city": "Detroit",
+                  "state": "MI",
+                  "postalCode": "48285"
+                }
+              ]
+            },
+            "search": {
+              "mode": "match",
+              "score": 1.0,
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/match-grade",
+                  "valueCode": "certain"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "patients_after_link": [
+        {
+          "resourceType": "Patient",
+          "id": "pat-baseline__REG-000028",
+          "active": false,
+          "gender": "male",
+          "identifier": [
+            {
+              "system": "http://lakeside.example.org/identifier/mrn-registration",
+              "value": "baseline-R0000028",
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "MR"
+                  }
+                ]
+              },
+              "assigner": {
+                "display": "Lakeside Health (fictional)"
+              }
+            },
+            {
+              "system": "http://hl7.org/fhir/sid/us-ssn",
+              "value": "477904199",
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "SS"
+                  }
+                ]
+              }
+            }
+          ],
+          "name": [
+            {
+              "use": "official",
+              "family": "Anderson",
+              "given": [
+                "Daniel",
+                "A"
+              ]
+            }
+          ],
+          "telecom": [
+            {
+              "system": "email",
+              "value": "danielanderson38@example.com",
+              "use": "home"
+            },
+            {
+              "system": "phone",
+              "value": "(985) 577-2749",
+              "use": "home"
+            }
+          ],
+          "birthDate": "1959-04-05",
+          "address": [
+            {
+              "use": "home",
+              "line": [
+                "1974 Sanchez Mountains LN"
+              ],
+              "city": "Detroit",
+              "state": "MI",
+              "postalCode": "48285"
+            }
+          ],
+          "link": [
+            {
+              "other": {
+                "reference": "Patient/pat-baseline__BIL-000980"
+              },
+              "type": "replaced-by"
+            }
+          ]
+        },
+        {
+          "resourceType": "Patient",
+          "id": "pat-baseline__BIL-000980",
+          "active": true,
+          "gender": "male",
+          "identifier": [
+            {
+              "system": "http://lakeside.example.org/identifier/mrn-billing",
+              "value": "baseline-B0000980",
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "MR"
+                  }
+                ]
+              },
+              "assigner": {
+                "display": "Lakeside Health (fictional)"
+              }
+            },
+            {
+              "system": "http://hl7.org/fhir/sid/us-ssn",
+              "value": "477904199",
+              "type": {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                    "code": "SS"
+                  }
+                ]
+              }
+            }
+          ],
+          "name": [
+            {
+              "use": "official",
+              "family": "Anderson",
+              "given": [
+                "Daniel",
+                "A"
+              ]
+            }
+          ],
+          "telecom": [
+            {
+              "system": "email",
+              "value": "danielanderson.dup0980@example.com",
+              "use": "home"
+            },
+            {
+              "system": "phone",
+              "value": "985.577.2749",
+              "use": "home"
+            }
+          ],
+          "birthDate": "1959-04-05",
+          "address": [
+            {
+              "use": "home",
+              "line": [
+                "1974 Sanchez Mountains Lane"
+              ],
+              "city": "Detroit",
+              "state": "MI",
+              "postalCode": "48285"
+            }
+          ],
+          "link": [
+            {
+              "other": {
+                "reference": "Patient/pat-baseline__REG-000028"
+              },
+              "type": "replaces"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Manual review. No Patient.link is written until a person confirms the pair.",
+      "decision": "manual_review",
+      "decision_reason": "probable_band",
+      "agreed_fields": "given:agree|family:agree|dob:agree|ssn:missing|phone:missing|street:disagree|postal:disagree|gender:agree|alignment:direct",
+      "request": {
+        "resourceType": "Parameters",
+        "parameter": [
+          {
+            "name": "resource",
+            "resource": {
+              "resourceType": "Patient",
+              "id": "pat-baseline__REG-002981",
+              "active": true,
+              "gender": "male",
+              "identifier": [
+                {
+                  "system": "http://lakeside.example.org/identifier/mrn-registration",
+                  "value": "baseline-R0002981",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "MR"
+                      }
+                    ]
+                  },
+                  "assigner": {
+                    "display": "Lakeside Health (fictional)"
+                  }
+                },
+                {
+                  "system": "http://hl7.org/fhir/sid/us-ssn",
+                  "value": "784119574",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "SS"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "use": "official",
+                  "family": "Smith",
+                  "given": [
+                    "James",
+                    "S"
+                  ]
+                }
+              ],
+              "telecom": [
+                {
+                  "system": "email",
+                  "value": "jamessmith4153@example.com",
+                  "use": "home"
+                },
+                {
+                  "system": "phone",
+                  "value": "271-639-3477",
+                  "use": "home"
+                }
+              ],
+              "birthDate": "1993-08-05",
+              "address": [
+                {
+                  "use": "home",
+                  "line": [
+                    "2322 Kenneth Pike DR"
+                  ],
+                  "city": "Newark",
+                  "state": "NJ",
+                  "postalCode": "07138"
+                }
+              ]
+            }
+          },
+          {
+            "name": "onlyCertainMatches",
+            "valueBoolean": false
+          },
+          {
+            "name": "count",
+            "valueInteger": 5
+          }
+        ]
+      },
+      "response": {
+        "resourceType": "Bundle",
+        "type": "searchset",
+        "total": 1,
+        "entry": [
+          {
+            "fullUrl": "http://lakeside.example.org/fhir/Patient/pat-baseline__LAB-001340",
+            "resource": {
+              "resourceType": "Patient",
+              "id": "pat-baseline__LAB-001340",
+              "active": true,
+              "gender": "male",
+              "identifier": [
+                {
+                  "system": "http://lakeside.example.org/identifier/mrn-lab",
+                  "value": "baseline-L0001340",
+                  "type": {
+                    "coding": [
+                      {
+                        "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                        "code": "MR"
+                      }
+                    ]
+                  },
+                  "assigner": {
+                    "display": "Lakeside Health (fictional)"
+                  }
+                }
+              ],
+              "name": [
+                {
+                  "use": "official",
+                  "family": "Smith",
+                  "given": [
+                    "James"
+                  ]
+                }
+              ],
+              "telecom": [
+                {
+                  "system": "email",
+                  "value": "jamessmith.dup1340@example.com",
+                  "use": "home"
+                }
+              ],
+              "birthDate": "1993-08-05",
+              "address": [
+                {
+                  "use": "home",
+                  "line": [
+                    "2339 Other Road"
+                  ],
+                  "city": "Other City",
+                  "state": "WY",
+                  "postalCode": "82999"
+                }
+              ]
+            },
+            "search": {
+              "mode": "match",
+              "score": 0.8395,
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/match-grade",
+                  "valueCode": "probable"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

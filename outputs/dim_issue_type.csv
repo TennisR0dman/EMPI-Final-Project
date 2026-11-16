@@ -1,0 +1,19 @@
+﻿issue_type,severity,field_name,cross_record,description
+missing_family_name,error,family_name,0,Family name is blank. A chart without a family name is unsafe to match automatically.
+missing_given_name,error,given_name,0,Given name is blank.
+missing_birth_date,error,birth_date,0,Birth date was not sent. This is separate from a value that was sent but could not be parsed.
+invalid_birth_date,error,birth_date,0,Birth date text could not be parsed as a real date on or before the project as-of date and on or after 1900-01-01.
+missing_phone,warning,phone,0,"No phone number was sent. Phone is often legitimately absent, so this is a warning."
+invalid_phone,error,phone,0,Phone text was present but did not normalize to a 10-digit NANP number.
+missing_ssn,warning,ssn,0,"No SSN was sent. Many real registrations do not collect an SSN, so this is a warning, not an error."
+invalid_ssn,error,ssn,0,"SSN text was present but failed the structural check (9 digits, area not 000/666/9xx, group not 00, serial not 0000)."
+missing_address,warning,address,0,Street address is blank.
+missing_postal_code,warning,postal_code,0,Postal code is blank.
+invalid_postal_code,error,postal_code,0,Postal code text was present but did not contain a 5-digit ZIP.
+invalid_state,error,state,0,State text was present but did not map to a USPS abbreviation.
+gender_unknown,warning,gender,0,Administrative gender is unknown. FHIR allows the code unknown; it still counts against known-gender completeness.
+unrecognized_gender,warning,gender,0,"Sex value was not in the source map, so it was stored as FHIR gender unknown."
+missing_mrn,error,mrn,0,No medical record number was sent for this source system.
+shared_ssn,warning,ssn,1,"Another record has the same normalized SSN and a different record id. This is a deterministic duplicate signal, not proof."
+exact_name_and_dob,warning,demographic,1,"Another record shares normalized given name, family name, and birth date. MRNs may still differ."
+shared_phone_and_dob,warning,phone,1,Another record shares the normalized phone number and birth date.

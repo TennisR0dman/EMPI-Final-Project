@@ -1,0 +1,6 @@
+﻿scenario_key,scenario_name,scenario_sort,description,seed
+baseline,Baseline,1,"Current registration load. About 2% of charts are injected extra charts with the usual mix of typos, nicknames, transposed dates, and missing identifiers.",42
+merger,Hospital merger,2,"Two fictional hospitals combined their registration files. About 9% of charts are extra charts, mostly in a different source system from the original.",43
+messy_entry,Messy data entry,3,"The same duplicate rate ballpark as baseline, with much more missing SSN and phone, invalid formats, and name typos on charts that are not duplicates.",44
+hard_cases,Hard cases,4,"Twins who share a last name, birth date, address, and phone; households that share a phone and address; and a pile of common names such as John Smith. These are different people. Precision should fall because some of them look like duplicates.",45
+lab_migration,Lab migration,5,"The laboratory feed was loaded from a legacy system. Lab charts systematically drop SSN, often drop or garble the phone, and sometimes send an unusable birth date or address. Registration and billing are unchanged.",46

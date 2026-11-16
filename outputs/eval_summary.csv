@@ -1,0 +1,6 @@
+﻿scenario_key,total_records,injected_duplicate_records,injected_duplicate_rate,true_pairs,true_pairs_blocked,true_pairs_unblocked,auto_link_tp,auto_link_fp,auto_link_fn,auto_link_precision,auto_link_recall,auto_link_f1,flagged_tp,flagged_fp,flagged_fn,flagged_precision,flagged_recall,flagged_f1,auto_link_pairs,review_pairs,candidate_pairs,mean_completeness,suspected_duplicate_record_rate
+baseline,8170,170,0.020808,170,170,0,160,0,10,1.000000,0.941176,0.969697,170,0,0,1.000000,1.000000,1.000000,160,10,11457,0.990186,0.039168
+merger,4400,400,0.090909,400,400,0,376,0,24,1.000000,0.940000,0.969072,400,0,0,1.000000,1.000000,1.000000,376,24,3524,0.989922,0.170909
+messy_entry,3080,80,0.025974,80,80,0,75,0,5,1.000000,0.937500,0.967742,80,0,0,1.000000,1.000000,1.000000,75,5,1499,0.952212,0.048701
+hard_cases,2570,70,0.027237,70,70,0,66,35,4,0.653465,0.942857,0.771930,70,47,0,0.598291,1.000000,0.748663,101,16,2018,0.990076,0.078599
+lab_migration,3090,90,0.029126,90,85,5,72,0,18,1.000000,0.800000,0.888889,85,0,5,1.000000,0.944444,0.971429,72,13,1540,0.976588,0.046602

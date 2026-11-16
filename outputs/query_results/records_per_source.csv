@@ -1,0 +1,16 @@
+﻿scenario_key,system_name,source_system_key,record_count,active_records,mean_core_completeness
+baseline,Registration,registration,5836,5671,0.9902
+baseline,Laboratory,lab,1340,1306,0.9887
+baseline,Billing,billing,994,971,0.992
+hard_cases,Registration,registration,1872,1794,0.9904
+hard_cases,Laboratory,lab,408,387,0.9873
+hard_cases,Billing,billing,290,276,0.992
+lab_migration,Registration,registration,2213,2145,0.989
+lab_migration,Laboratory,lab,509,489,0.9113
+lab_migration,Billing,billing,368,356,0.9923
+merger,Registration,registration,1986,1800,0.9896
+merger,Laboratory,lab,1304,1170,0.9895
+merger,Billing,billing,1110,1021,0.991
+messy_entry,Registration,registration,2149,2071,0.9512
+messy_entry,Laboratory,lab,545,525,0.9557
+messy_entry,Billing,billing,386,371,0.9529

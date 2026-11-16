@@ -1,0 +1,14 @@
+[project]
+name = "empi-data-integrity"
+version = "1.0.0"
+description = "Synthetic Enterprise Master Patient Index duplicate detection and data-integrity dashboard"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["faker==33.1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.4"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
